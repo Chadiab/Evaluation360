@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<br>
+<br>
+<br>
+<div class="container bootdey">
+<div class="row">
+<div class="col-md-11 ">
+  <div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body p-t-0">
+                <h1>Select Collaborators:</h1>
+                <div class="input-group">
+                    <input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Search Collaborators">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-effect-ripple btn-primary"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+<br>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    
+  <div class="col-md-6 col-lg-4" *ngFor="let collaborator of collaborators">
+    <div class="card hover-shadow">
+      <div class="card-body text-center pt-1 pb-20">
+        <a href="#">
+          <img class="avatar avatar-xxl" src="https://bootdey.com/img/Content/avatar/avatar2.png">
+        </a>
+        <h3>{{collaborator.username}}</h3>
+      </div>
+
+      <footer class="card-footer ">
+        <div class="center"> <button class="btn btn btn-primary"  type="button" (click)="selectCollab(collaborator.username)" routerLink="/select-collaborators">Select</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+
+
+
+  </div>
+  </div>
+</div>
+</div>

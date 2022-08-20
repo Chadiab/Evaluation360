@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+
+<div class="container bootstrap snippets bootdey">
+
+    <div class="row">
+          <div class="col-lg-12">
+              <div class="main-box no-header clearfix">
+                  <div class="main-box-body clearfix">
+                      <div class="table-responsive">
+                          <table class="table user-list">
+                              <thead>
+                                  <tr>
+                                  <th><span>Evaluation Form</span></th>
+                                  <th><span>Themes</span></th>
+
+                                  <th><span>Created</span></th>
+                                  <th><span>For</span></th>
+
+                                  <th>&nbsp;</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let evaluationForm of evaluationForms">
+                                      <td>
+                                          <a href="#" >{{evaluationForm.formName}} </a>
+                                          <h4>Note:</h4>
+                                          <p></p>
+                                      </td>
+                                      <td>
+                                        <tr *ngFor="let evaluationTheme of evaluationForm.themes">{{evaluationTheme.themeName}}:
+                                            <div *ngFor="let evaluationCriteria of evaluationTheme.criterias">
+                                                {{evaluationCriteria.criteriaName}}
+                                            </div>
+                                        </tr>
+                                      </td>
+                                      <td>{{evaluationForm.createdAt}}</td>
+
+                                      <td>{{evaluationForm.targetCollaborator}}</td>
+
+  
+                                      <td>
+                                          <a (click)="deleteForm(evaluationForm.id)" class="table-link text-warning">
+                                                <fa-icon class="fa-solid fa-xl" [icon]="faSquareMinus" ></fa-icon>
+                                          </a>
+  
+                                      </td>
+                                  </tr>
+  
+  
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>

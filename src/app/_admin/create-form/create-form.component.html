@@ -1,0 +1,107 @@
+<app-navbar></app-navbar>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="card cardbox">
+        <div class="card-header text-center "><h1>Create Evaluation Form</h1></div>
+        <div class="card-body">
+
+          <!--{{formObject | json}}-->
+          <div class="form-group">
+            
+            <form #createForm="ngForm" id="login-nav"  class="form" accept-charset="UTF-8">
+
+              <div class="form-group">
+                <label >formName</label>
+                <input type="text" id="reg_username" name="formName"class="form-control"
+                [(ngModel)]="formObject.formName"
+                value="" placeholder="Form Name" required>
+                {{formName}}
+              </div>    
+             
+			  <!-- email group -->
+              <div class="form-group">
+                <label >createdAt</label>
+                <input type="email" id="reg_useremail" name="createdAt"  [(ngModel)]="formObject.createdAt" class="form-control" 
+				value="" placeholder="Created At">
+        <!--{{createdAt}}-->
+
+              </div>
+
+              <h2>Themes:</h2>
+             <!--{{themes | json}}!-->
+
+              <div class="form-group" *ngFor="let theme of themes; index as i">
+                <label >Theme</label>
+                <input type="email" id="reg_useremail" name="themeName{{i}}"  [(ngModel)]="theme.themeName" class="form-control" 
+				value="" placeholder="themeName">
+        
+        <div *ngFor="let criteria of theme.criterias; index as j;">
+          <label >Criteria:</label>
+
+          <input type="email" id="criteria" name="criteriaName{{j}}"  [(ngModel)]="criteria.criteriaName" class="form-control" 
+          value="" placeholder="criteriaName">
+        </div>
+        <button class="btn btn-success" (click)="addCriteria(theme)" >Add Criteria</button>
+
+
+
+
+      </div>
+
+
+              <button class="btn btn-secondary" (click)="addTheme()" >Add Theme</button>
+
+
+
+
+              <!--
+ question group 
+<div class="form-group">
+    <label >Criteria 1:</label>
+    <input type="email" id="reg_useremail" name="criteriaScore" ngModel class="form-control" 
+    value="" placeholder="Enter criteria score">
+  </div>
+            
+   answer group 
+  <div class="form-group">
+    <label>Full Score:</label>
+    <input type="text" id="reg_useranswer" name="fullScore" ngModel class="form-control"
+           value="" placeholder="Enter full score">
+  </div>
+  <div class="form-group">
+    <label>Target Collaborator's username:</label>
+    <input type="text" id="reg_useranswer" name="collaborator_username" ngModel  class="form-control"
+           value="" placeholder="Enter Collaborator's username">
+  </div>
+              -->
+			  
+
+              <div class="form-group">
+                <label >Target Collaborator :</label>
+                <input type="email" id="reg_useremail" name="targetCollaborator"  [(ngModel)]="formObject.targetCollaborator" class="form-control" 
+				value="" placeholder="Target Collaborator">
+        <!--{{formObject.targetCollaborator}}!-->
+
+              </div>
+              <!-- Submit -->
+              <div class="form-group">
+                <button id="reg_submit" [disabled]="createForm.invalid" (click)="createEvaluationForm()"  value="1" class="btn btn-block btn-primary" >Submit Evaluation</button>
+              </div>
+              <hr class="hr-or">
+
+             
+
+
+            </form>
+          </div>
+		  
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>

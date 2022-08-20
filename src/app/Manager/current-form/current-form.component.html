@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+<div class="container-xl px-4 mt-4">
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <!-- Billing card 1-->
+            <div class="card h-100 border-start-lg border-start-primary">
+                <div class="card-body">
+                    <div class="small text-muted">Current Form's Name</div>
+                    <div class="h3">{{currentForm.formName}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <!-- Billing card 2-->
+            <div class="card h-100 border-start-lg border-start-secondary">
+                <div class="card-body">
+                    <div class="small text-muted">Date Of Creation</div>
+                    <div class="h3">{{currentForm.createdAt}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <!-- Billing card 3-->
+            <div class="card h-100 border-start-lg border-start-success">
+                <div class="card-body">
+                    <div class="small text-muted">For</div>
+                    <div class="h3 d-flex align-items-center">{{currentForm.targetCollaborator}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment methods card-->
+    <div class="card card-header-actions mb-4">
+        <div class="card-header">
+            Form Themes
+        </div>
+        <div class="card-body px-0">
+            <!-- Payment method 1-->
+            <div class="d-flex align-items-center justify-content-between px-4" *ngFor="let theme of currentForm.themes">
+                <div class="d-flex align-items-center">
+                    <div class="ms-4">
+                        <h2>{{theme.themeName}}</h2>
+                        <div *ngFor="let criteria of theme.criterias" >{{criteria.criteriaName}}</div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+         
+        </div>
+    </div>
+    <div class="center"> <button class="btn btn btn-primary" type="button" routerLink="/select-collaborators">Select Collaborators</button>
+    </div>
+
+   

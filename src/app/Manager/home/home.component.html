@@ -1,0 +1,197 @@
+<app-navbar ></app-navbar>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="title">
+    <h1 >Welcome Back</h1>
+    <h1 class="text-primary align">{{managerName}}</h1>
+</div>
+<div class="container bootstrap snippets bootdey" id="main-container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body p-t-0">
+                    <h1>Collaborators:</h1>
+                    <div class="input-group">
+                        <input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-effect-ripple btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                    <div class="button-add">
+                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addCollaboratorModal">
+                        Add Collaborator
+                      </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-sm-6" *ngFor="let collaborator of collaborators" >
+            <div class="panel">
+                <div class="panel-body p-t-10">
+                    <div class="media-main">
+                        <a class="pull-left" href="#">
+                            <img class="thumb-lg img-circle bx-s" src="https://www.bootdey.com/app/webroot/img/Content/user_3.jpg" alt="">
+                        </a>
+                        <div class="pull-right btn-group-sm">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCollaboratorModal"
+                            (click)="getUpdatedCollaborator(collaborator,collaborator.id)"
+                            >
+                                Update
+                              </button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCollaboratorModal"
+                                (click)="getDeleteCollaborator(collaborator.id)"
+                                >
+                                    Delete
+                                  </button>
+                        </div>
+                        <div class="info">
+                            <h4>{{collaborator.firstName}}</h4> 
+                            <h4>{{collaborator.lastName}}</h4>
+                            <button type="button" class="btn btn-outline-success">
+                              See History
+                            </button>
+
+
+                            
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Add Employee Modal -->
+<div class="modal fade" id="addCollaboratorModal" tabindex="-1" role="dialog" aria-labelledby="addCollaboratorModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addEmployeeModalLabel">Add Collaborator</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onAddCollaborator(addForm)" >     <!--#addForm is a reference to the form!-->
+            <div class="form-group">
+               <label for="name">Username</label>
+               <input type="text" ngModel name="username" class="form-control" id="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+               <label for="password">Password</label>
+               <input type="password" ngModel name="password" class="form-control" id="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+               <label for="name">First Name</label>
+               <input type="text" ngModel name="firstName" class="form-control" id="firstName" placeholder="First Name" required>
+            </div>
+            <div class="form-group">
+               <label for="phone">Last Name</label>
+               <input type="text" ngModel name="lastName" class="form-control" id="lastName" placeholder="Last Name" required>
+            </div>
+            <div class="form-group">
+               <label for="phone">Avatar</label>
+               <input type="text" ngModel name="avatar" class="form-control" id="avatar" placeholder="Image URL" required>
+            </div>
+            <div class="form-group">
+               <label for="phone">code</label>
+               <input type="text" ngModel name="code" class="form-control" id="code" placeholder="Collaborator Code" required>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+               <button [disabled]="addForm.invalid" type="submit" data-bs-dismiss="modal" class="btn btn-primary" >Save changes</button>
+            </div>
+            </form>
+         </div>
+      </div>
+    </div>
+    </div>
+  
+  <!-- Edit Modal -->
+  <div class="modal fade" id="updateCollaboratorModal" tabindex="-1" role="dialog" aria-labelledby="employeeEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="updateEmployeeModalLabel">Edit Collaborator </h5>
+             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm="ngForm">
+               <div class="form-group">
+                  <label for="name">Id</label>
+                  <input type="text" hidden ngModel = "{{editCollaborator.id}}" name="id" class="form-control" id="name" placeholder="Username" required>
+               </div>
+               <div class="form-group">
+                  <label for="name">Username</label>
+                  <input type="text" ngModel = "{{editCollaborator.username}}" name="username" class="form-control" id="name" placeholder="Username" required>
+               </div>
+               <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" ngModel = "{{editCollaborator.password}}" name="password" class="form-control" id="email" placeholder="Password" required>
+               </div>
+               <div class="form-group">
+                  <label for="name">First Name</label>
+                  <input type="text" ngModel = "{{editCollaborator.firstName}}" name="firstName" class="form-control" id="jobTile" placeholder="First Name" required>
+               </div>
+               <div class="form-group">
+                  <label for="phone">Last Name</label>
+                  <input type="text" ngModel = "{{editCollaborator.lastName}}" name="lastName" class="form-control" id="phone" placeholder="Last Name" required>
+               </div>
+               <div class="form-group">
+                  <label for="phone">Avatar</label>
+                  <input type="text" ngModel = "{{editCollaborator.avatar}}" name="avatar" class="form-control" id="imageUrl" placeholder="Image URL" required>
+               </div>
+
+                <div class="modal-footer">
+                   <button type="button" id="" data-bs-dismiss="modal" class="btn btn-secondary">Close</button>
+                   <button  data-bs-dismiss="modal" class="btn btn-primary" (click)="onUpdateCollaborator(editForm.value,updatedCollaboratorId)">Save changes</button>
+                </div>
+             </form>
+          </div>
+       </div>
+    </div>
+  </div>
+  
+  <!-- Delete Modal -->
+  <div class="modal fade" id="deleteCollaboratorModal" tabindex="-1" role="dialog" aria-labelledby="deleteCollaboratorModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="deleteModelLabel">Delete Collaborator</h5>
+             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <p>Are you sure you want to delete collaborator ?</p>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button  class="btn btn-danger" data-bs-dismiss="modal" (click)="onDeleteCollaborator(deletedCollaboratorId)">Yes</button>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+  </div>
+
+  <br>
+
+  <!-- Notification for no employees -->
+  <div *ngIf="collaborators.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+  <div class="alert alert-info" role="alert">
+    <h4 class="alert-heading">NO COLLABORATORS!</h4>
+    <p>No Collaborators were found.</p>
+  </div>
+    </div>
+</div>
+

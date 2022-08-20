@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg custom_nav">
+    <div class="container-fluid ">
+  
+  <a class="navbar-brand custom_nav_title" *ngIf="roleMatch('ROLE_MANAGER')" routerLink="/manager">Plateforme360</a>
+      <div class="collapse navbar-collapse center " id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+
+
+          
+          <li class="nav-item">
+
+
+          <li class="nav-item">
+            <a class="nav-link active " aria-current="page" routerLink="/admin" *ngIf="roleMatch('ROLE_ADMIN')">Admin Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active " aria-current="page" routerLink="/manager" *ngIf="roleMatch('ROLE_MANAGER')">Manager Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active " aria-current="page" routerLink="/current-form" *ngIf="roleMatch('ROLE_MANAGER')">Current Form</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active " aria-current="page" routerLink="/user" *ngIf="roleMatch('ROLE_USER')">Collaborator Dashboard</a>
+          </li>
+
+          <li class="nav-item ">
+            <a class="nav-link " *ngIf="roleMatch('ROLE_MANAGER')" routerLink="/requests">Requests</a>
+
+            <a class="nav-link " *ngIf="roleMatch('ROLE_USER')" routerLink="/evaluation">Evaluations</a>
+
+
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link " *ngIf="roleMatch('ROLE_ADMIN')" routerLink="/create">Create Evaluation </a>
+          </li>
+
+          <li class="nav-item">
+          <a class="nav-link" routerLink="/forms" *ngIf="roleMatch('ROLE_ADMIN')">Evaluation Forms</a>
+        </li>
+
+  
+        </ul>
+        <button type="button" class="btn btn-outline-warning btn" (click)="logout()">Logout</button>
+        <i class="fa fa-user-circle" aria-hidden="true"></i>
+
+  
+      </div>
+    </div>
+  </nav>

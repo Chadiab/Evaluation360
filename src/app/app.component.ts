@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Plateforme360';
+
+  links = [
+    { path: '/home', icon: 'home', title: 'Home' },
+    { path: '/evaluation', icon: 'view_list', title: 'Evaluations' },
+    
+  ];
+
+
+
 }
